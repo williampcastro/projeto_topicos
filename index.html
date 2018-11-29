@@ -32,7 +32,7 @@
 			<div class="col-lg-12 form-group mx-sm-3 mb-2 form-check">
 				<input class="form-check-input" type="checkbox" id="vencidos" value="">
 				<label class="form-check-label">
-					Apenas Vencidos
+					Incluir Vencidos
 				</label>
 			</div>
 			
@@ -166,8 +166,8 @@
 			let loteValue = $('#lote_input').val();
 			let conteudoValue = $('#conteudo_input').val();
 			let auxDate = ($('#validade_input').val()).split("-");
-			let validadeValue = `${auxDate[2]}/${auxDate[1]}/${auxDate[0]}`;
-			debugger
+			let validadeValue = `${auxDate[2]}/${auxDate[1]-1}/${auxDate[0]}`;
+
 			console.log(loteValue);
 			console.log(conteudoValue);
 			console.log(validadeValue);
@@ -178,23 +178,23 @@
     			validade: validadeValue
 			}
 
-			// $.ajax({
-			// 	url: mid + 'inserir',
-			// 	type: 'POST',
-			// 	data: body,
-			// 	success: function (result) {
-			// 		alert('Que tiro foi esse?!');
-			// 		$('#lote_input').val('');;
-			// 		$('#conteudo_input').val('');;
-			// 		$('#validade_input').val('');;
-			// 	},
-			// 	error: function () {
-			// 		alert('Houve um erro.');
-			// 	},
-			// 	complete: function () {
+			$.ajax({
+				url: mid + 'inserir',
+				type: 'POST',
+				data: body,
+				success: function (result) {
+					alert('Que tiro foi esse?!');
+					$('#lote_input').val('');;
+					$('#conteudo_input').val('');;
+					$('#validade_input').val('');;
+				},
+				error: function () {
+					alert('Houve um erro.');
+				},
+				complete: function () {
 					
-			// 	}
-			// })
+				}
+			})
 		}
 	);
 

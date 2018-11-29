@@ -21,7 +21,9 @@ let verificaVencidos = (rows, buscaVencidos) => {
 
   let dataHoje = new Date();
 
-  if(buscaVencidos=='false')return rows;
+  dataHoje.setHours(0,0,0,0);
+
+  if(buscaVencidos == 'true') return rows;
   
   else {
 
@@ -30,12 +32,13 @@ let verificaVencidos = (rows, buscaVencidos) => {
     rows.forEach(element => {
 
       let dia = (element.validade.split("/"))[0];
-      let mes = (element.validade.split("/"))[1];
+      // subtrair 1 do mês porque o JS conta os meses de 0 a 11
+      let mes = ((element.validade.split("/"))[1]) -1 ;
       let ano = (element.validade.split("/"))[2];
 
       let dateElement = new Date(ano, mes, dia);
 
-      if (dateElement < dataHoje) aux.push(element); 
+      if (dateElement >= dataHoje) aux.push(element); 
 
     });
 
